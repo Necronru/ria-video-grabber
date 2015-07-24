@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+
+  "name": "Ria News Video Download",
+  "description": "",
+  "version": "1.0",
+
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "browsingData",
+    "pageCapture",
+    "clipboardWrite"
+  ],
+
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+
+  "content_scripts": [{
+      "matches": ["*://ria.ru/*"],
+      "js":      [
+        "vendors/jquery-2.1.4.min.js",
+        "content.js"
+      ],
+      "run_at": "document_end"
+  }]
+}

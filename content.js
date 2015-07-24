@@ -1,9 +1,18 @@
 var RiaVideoParser = function() {};
 
+/**
+ * [findVideoPlayers description]
+ * @return {[type]} [description]
+ */
 RiaVideoParser.prototype.findVideoPlayers = function() {
 	return $('object');
 };
 
+/**
+ * [findLink description]
+ * @param  {[type]} el [description]
+ * @return {[type]}    [description]
+ */
 RiaVideoParser.prototype.findLink = function(el) {
 
 	var vars = $(el).find('param[name=flashvars]').prop('value');
@@ -50,10 +59,21 @@ RiaVideoParser.prototype.findLink = function(el) {
 
 };
 
+/**
+ * [makeLink description]
+ * @param  {[type]} href [description]
+ * @return {[type]}      [description]
+ */
 RiaVideoParser.prototype.makeLink = function(href) {
 	return $('<a/>').attr('target', '_blank').attr('href', href).html('&nbsp;<<<-- Скачать');
 };
 
+/**
+ * [getUrlParameter description]
+ * @param  {[type]} url    [description]
+ * @param  {[type]} sParam [description]
+ * @return {[type]}        [description]
+ */
 RiaVideoParser.prototype.getUrlParameter = function (url, sParam)
 {
 	var a = document.createElement('a');
@@ -74,10 +94,14 @@ RiaVideoParser.prototype.getUrlParameter = function (url, sParam)
 $('document').ready(function() {
 	var parser = new RiaVideoParser();
 
+	// Найдем все видео плееры на странице
 	parser.findVideoPlayers().each(function() {
 		var $el = $(this);
 
+		// Найдем ссылку на видео
 		parser.findLink(this).done(function(href) {
+
+			// Сгенерируем ссылку и подставим ее в текст с размером видео.
 			var $link = parser.makeLink(href);
 			var $size = $el.closest('.article_video').find('.html5info .videoSize');
 			$link.text($size.text());

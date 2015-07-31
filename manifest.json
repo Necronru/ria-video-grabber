@@ -1,21 +1,20 @@
 {
   "manifest_version": 2,
 
-  "name": "Ria News Video Download",
+  "name": "Ria Video Download",
   "description": "",
   "version": "1.0",
 
   "browser_action": {
-    "default_icon": "icon.png"
+    "default_title": "Качает видео с ria.ru",
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
 
   },
 
   "permissions": [
     "tabs",
-    "activeTab",
-    "browsingData",
-    "pageCapture",
-    "clipboardWrite"
+    "activeTab"
   ],
 
   "content_scripts": [{
